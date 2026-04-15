@@ -1,5 +1,21 @@
 # Structured Pruning of Feedback Delay Networks
 
+
+
+
+### Two-staged feedback matrix optimisation:
+
+<p align="center">
+  <img
+    src="https://github.com/user-attachments/assets/340c4969-eeaa-4c6a-81ad-c99da48d311e"
+    alt="pipeline_diagram_white"
+    width="88%"
+  />
+</p>
+
+
+
+
 ### Some results:
 | Matrix Size (N) | Optimal Layers (L) | Staged FDN | Apple BLAS | Speedup |
 | :---: | :---: | :---: | :---: | :---: |
