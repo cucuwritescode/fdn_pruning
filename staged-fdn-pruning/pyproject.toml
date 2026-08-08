@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "staged-fdn"
+version = "0.1.0"
+description = "Structured pruning of Feedback Delay Networks via staged orthogonal factorisation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Facundo Franchino" }]
+dependencies = [
+    "numpy",
+    "scipy",
+]
+
+[project.optional-dependencies]
+# audio I/O, plotting, and the DiffFDN training framework (only needed to
+# retrain matrices or render audio; projection itself needs only numpy+scipy)
+full = ["soundfile", "matplotlib", "flamo"]
+
+[tool.setuptools]
+packages = ["staged_fdn"]
