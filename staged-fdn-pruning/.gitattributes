@@ -1,0 +1,3 @@
+#research artifacts: experiment scripts document the study but are not
+#the product, so they are excluded from the language statistics
+experiments/** linguist-documentation
