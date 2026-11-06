@@ -15,20 +15,26 @@ risk, and the delays, gains, and attenuation keep the values of the original
 design. Hand-written NEON kernels apply the stages one by one and never form the
 dense product.
 
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/fig_fdn_diagram_dark.svg"><img src="assets/fig_fdn_diagram_light.svg" width="62%"></picture></p>
+
+
 ### Results (Apple M2, FP32, feedback multiply)
 
-| N | selected structure | L | kernel (ns) | speedup (blocked) | speedup (isolated) | stored floats |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 16 | radix-4 | 2 | 4.5 | 8.7× | 9.4× | 128 |
-| 32 | radix-4 | 4 | 18.9 | 3.8× | 4.4× | 512 |
-| 64 | radix-4 | 2 | 18.2 | 12.3× | 13.7× | 512 |
-| 128 | pairwise | 3 | 44.4 | 9.2× | 14.1× | 384 |
-| 256 | pairwise | 3 | 84.4 | 16.4× | 21.7× | 768 |
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/fig_table2_dark.svg"><img src="assets/fig_table2_light.svg" width="78%"></picture></p>
 
 Blocked times SGEMV back to back; isolated times one call at a time, which is what a per-sample callback pays. Full protocol in the paper (Sec. V, Table 2).
 At N = 256 coefficient storage falls from 65,536 to 768 floats. In the listening
 study (34 participants), the selected configurations scored 94–99 on a 0–100
 similarity scale against their dense references.
+
+The two-phase fit, matrix fitting then response refinement against the complete
+reverberator,
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/fig_pipeline_dark.svg"><img src="assets/fig_pipeline_light.svg" width="88%"></picture></p>
+
+and the register-resident radix-4 stage the C++ kernels implement for N <= 64,
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/fig_kernel_dark.svg"><img src="assets/fig_kernel_light.svg" width="70%"></picture></p>
 
 ## Layout
 
