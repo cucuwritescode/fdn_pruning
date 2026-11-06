@@ -133,6 +133,7 @@
 </g>
 </g>
 </defs>
+<path fill-rule="nonzero" fill="rgb(100%, 100%, 100%)" fill-opacity="1" d="M 0 165.5625 L 272.191406 165.5625 L 272.191406 0 L 0 0 Z M 0 165.5625 "/>
 <path fill="none" stroke-width="0.797" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00125 0.001 L 256.24875 0.001 " transform="matrix(1, 0, 0, -1, 7.97, 6.376)"/>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph-0-0" x="8.528" y="20.92"/>

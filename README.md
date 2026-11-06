@@ -15,12 +15,12 @@ risk, and the delays, gains, and attenuation keep the values of the original
 design. Hand-written NEON kernels apply the stages one by one and never form the
 dense product.
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/fig_fdn_diagram_dark.svg"><img src="assets/fig_fdn_diagram_light.svg" width="62%"></picture></p>
+<p align="center"><img src="assets/fdn_diagram.svg" width="62%"></p>
 
 
 ### Results (Apple M2, FP32, feedback multiply)
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/fig_table2_dark.svg"><img src="assets/fig_table2_light.svg" width="78%"></picture></p>
+<p align="center"><img src="assets/table2.svg" width="78%"></p>
 
 Blocked times SGEMV back to back; isolated times one call at a time, which is what a per-sample callback pays. Full protocol in the paper (Sec. V, Table 2).
 At N = 256 coefficient storage falls from 65,536 to 768 floats. In the listening
@@ -30,11 +30,11 @@ similarity scale against their dense references.
 The two-phase fit, matrix fitting then response refinement against the complete
 reverberator,
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/fig_pipeline_dark.svg"><img src="assets/fig_pipeline_light.svg" width="88%"></picture></p>
+<p align="center"><img src="assets/pipeline.svg" width="88%"></p>
 
 and the register-resident radix-4 stage the C++ kernels implement for N <= 64,
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/fig_kernel_dark.svg"><img src="assets/fig_kernel_light.svg" width="70%"></picture></p>
+<p align="center"><img src="assets/kernel.svg" width="70%"></p>
 
 ## Layout
 
