@@ -234,17 +234,21 @@ def refine_with_lsd(result, A_dense, delays, gamma=1.0, b=None, c=None,
         optimizer.zero_grad()
         lsd, _ = forward(angles_param)
         #backpropagate the lsd through the whole computation graph
-        lsd.backward()
-        #adam updates the angles using the gradient
-        optimizer.step()
-        lsd_val = float(lsd)
-        #track the best result across all steps, in case the optimiser overshoots
+        lsd_val = float(lsd.detach())
+        #The loss describes the current angles, before the Adam update.
         if lsd_val < best_lsd:
             best_lsd = lsd_val
-            best_angles = angles_param.data.clone()
+            best_angles = angles_param.detach().clone()
+        lsd.backward()
+        optimizer.step()
         if verbose and (step + 1) % 50 == 0:
             print(f"    step {step+1}/{maxiter}: LSD = {lsd_val:.4f} dB")
 
+    #The last update has not yet been scored by the loop.
+    with torch.no_grad():
+        final_lsd, _ = forward(angles_param)
+        if float(final_lsd) < best_lsd:
+            best_angles = angles_param.detach().clone()
     #build final result using best angles
     angles_np = best_angles.numpy().reshape(L, n_blocks)
     P_mats = [perm_matrix(p, N) for p in perm_list]
